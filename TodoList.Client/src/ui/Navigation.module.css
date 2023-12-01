@@ -1,0 +1,16 @@
+.home {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.disableHome{
+    display:none;
+}
+
+.disableProfile{
+    display: none;
+}
+.profile{
+    display: block;
+}

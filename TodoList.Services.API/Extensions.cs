@@ -9,23 +9,23 @@ namespace TodoList.Services.API
         {
             return new TodoDataToObject()
             {
-                startDate = todo.startDate,
-                endDate = todo.endDate,
-                name = todo.name,
-                description = todo.description,
-                createdBy = todo.createdBy,
-                id = todo.Id,
-                completed   = todo.completed
+                StartDate = todo.StartDate,
+                EndDate = todo.EndDate,
+                Name = todo.Name,
+                Description = todo.Description,
+                CreatedBy = todo.CreatedBy,
+                Id = todo.Id,
+                Completed   = todo.Completed
             };
         }
         public static UserDataToObject asUserDTO(this UserEntity user)
         {
             return new UserDataToObject()
             {
-                email = user.email,
-                name = user.name,
-                surname = user.surname,
-                username = user.username
+                Email = user.Email,
+                Name = user.Name,
+                Surname = user.Surname,
+                Username = user.Username
             };
         }
     

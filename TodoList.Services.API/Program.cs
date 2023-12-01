@@ -34,7 +34,9 @@ builder.Services.AddAuthentication(x=>
 
 });
 
+
 builder.Services.AddAuthorization();
+
 builder.Services.AddSingleton<IJwtAuthorization,JwtAuthorization>();
 
 var app = builder.Build();
@@ -50,6 +52,9 @@ if (app.Environment.IsDevelopment())
     });
 };
 
+app.UseDefaultFiles();
+
+app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
@@ -57,5 +62,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapFallbackToFile("/index.html");
 
 app.Run();

@@ -1,0 +1,27 @@
+.floating {
+    display: flex;
+    position: fixed;
+    z-index:2;
+    left:auto;
+    top:auto;
+    justify-content: center;
+    align-items: center;
+    bottom:60px;
+    right:60px;
+    height:80px;
+    width:80px;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.button-active {
+    background: #14171A;
+    border: none;
+}
+
+.button {
+    background: #657786;
+    border: none;
+}

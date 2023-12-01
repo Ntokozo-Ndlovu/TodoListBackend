@@ -5,13 +5,12 @@ namespace TodoList.Data.Entities
     public class TodoEntity
     {
         public Guid Id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public DateTimeOffset startDate { get; set; }
-        public DateTimeOffset endDate { get; set; }
-        [DefaultValue(false)]
-        public bool completed { get; set; }
-        public Guid createdBy { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public bool Completed { get; set; }
+        public Guid CreatedBy { get; set; }
    
     }
 }

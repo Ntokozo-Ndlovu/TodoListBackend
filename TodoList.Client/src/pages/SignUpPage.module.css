@@ -1,0 +1,29 @@
+.main-container {
+    background-color:#F5F8FA;
+    height:100vh; 
+    color: #14171A;
+}
+
+.pri-button {
+    background: #1DA1F2;
+    width: 100%;
+    border-color: #1DA1F2;
+}
+
+.pri-button:hover{
+    background: #1DA1F2;
+    width: 100%;
+    border-color: #1DA1F2;
+}
+
+.sec-button {
+    background: #AAB8C2;
+    width: 100%;
+    border-color: #AAB8C2;
+}
+
+.sec-button:hover{
+    background: #657886;
+    width: 100%;
+    border-color: #657886;
+}

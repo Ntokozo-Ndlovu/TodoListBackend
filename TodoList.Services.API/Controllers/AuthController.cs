@@ -45,11 +45,11 @@ namespace TodoList.Services.API.Controllers
         {
             UserEntity user = new UserEntity()
             {
-                name = body.name,
-                email = body.email,
-                password = body.password,
-                surname = body.surname,
-                Id = Guid.NewGuid(),
+                Name = body.name,
+                Email = body.email,
+                Password = body.password,
+                Surname = body.surname,
+                Username = body.username,
 
             };
             this.userRepositoryService.createUser(user);
