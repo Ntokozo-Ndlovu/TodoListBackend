@@ -2,12 +2,12 @@
 {
     public class TodoDataToObject
     {
-        public Guid id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
-        public DateTimeOffset startDate { get; set; }
-        public DateTimeOffset endDate { get; set; }
-        public Boolean completed { get; set; }
-        public Guid createdBy { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public Boolean Completed { get; set; }
+        public Guid CreatedBy { get; set; }
     }
 }

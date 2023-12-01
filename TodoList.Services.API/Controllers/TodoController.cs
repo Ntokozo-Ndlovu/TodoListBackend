@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text.Json;
 using TodoList.API.DataToObject;
 using TodoList.API.Requests;
 using TodoList.API.Responses;
+using TodoList.Data;
 using TodoList.Data.Entities;
 using TodoList.Data.Repository;
 using TodoList.Domain.JwtAuthorization;
@@ -22,6 +24,8 @@ namespace TodoList.Services.API.Controllers
         public IJwtAuthorization jwtAuthorizationService;
         public TodoController(ITodoRepository todoRepository, IJwtAuthorization jwtAuthorizationService)
         {
+
+   
             this.todoRepositoryService = todoRepository;
             this.jwtAuthorizationService = jwtAuthorizationService;
 
@@ -55,12 +59,11 @@ namespace TodoList.Services.API.Controllers
            
             TodoEntity todoEntity = new TodoEntity()
             {
-                Id = Guid.NewGuid(),
-                name = todo.name,
-                description = todo.description,
-                startDate = todo.startDate,
-                endDate = todo.endDate,
-                createdBy = Guid.Parse(userIdString)
+                Name = todo.name,
+                Description = todo.description,
+                StartDate = todo.startDate,
+                EndDate = todo.endDate,
+                CreatedBy = Guid.Parse(userIdString)
             };
 
             this.todoRepositoryService.createTodo(todoEntity);
@@ -106,34 +109,34 @@ namespace TodoList.Services.API.Controllers
 
 
         [HttpPatch("{todoId}")]
-        public ActionResult<TodoResponse<TodoDataToObject>> updateTodo(Guid todoId,[FromBody] System.Text.Json.Nodes.JsonObject body)
+        public ActionResult<TodoResponse<TodoDataToObject>> updateTodo(Guid todoId,[FromBody] UpdateTodoRequest todo)
         {   
-            TodoRequest todo = JsonSerializer.Deserialize<TodoRequest>(body);
-            Console.WriteLine(todo);
+       
             var todoItem = this.todoRepositoryService.findTodo(todoId);
+           
             if(todoItem == null)
             {
                 return NotFound();
             }
             if(todo.completed != null)
             {
-                todoItem.completed = todo.completed;
+                todoItem.Completed = (bool)todo.completed;
             }
             if(todo.name != null)
             {
-                todoItem.name = todo.name;
+                todoItem.Name = todo.name;
             }
             if(todo.startDate != null)
             {
-                todoItem.startDate = todo.startDate;
+                todoItem.StartDate = (DateTime)todo.startDate;
             }
             if (todo.endDate != null)
             {
-                todoItem.endDate = todo.endDate;
+                todoItem.EndDate = (DateTime)todo.endDate;
             }
             if (todo.description != null)
             {
-                todoItem.description = todo.description;
+                todoItem.Description = todo.description;
             }
 
             this.todoRepositoryService.updateTodo(todoItem);

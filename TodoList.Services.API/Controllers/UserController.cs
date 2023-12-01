@@ -40,16 +40,26 @@ namespace TodoList.Services.API.Controllers
 
 
         [HttpPatch("")]
-        public ActionResult<UserResponse<UserDataToObject>> updateUser([FromHeader] string authorization,[FromBody] UserRequest userBody)
+        public ActionResult<UserResponse<UserDataToObject>> updateUser([FromHeader] string authorization,[FromBody] UpdateUserRequest userBody)
         {
             string token = authorization.Split(" ")[1];
             string userIdString = this.jwtAuthorizationService.DecodeJwtToken(token);
             var user = this.userRepositoryService.findUserById(Guid.Parse(userIdString));
 
              if(user == null)
-            { return NotFound(); }
-            user.name = userBody.Name;
-            user.email = userBody.Password;
+            { 
+                return NotFound(); 
+            }
+             
+             if(userBody.name != null)
+                user.Name = userBody.name;
+             
+            if(userBody.email != null)
+                user.Email = userBody.email;
+             
+            if(userBody.surname != null)   
+                user.Surname = userBody.surname;
+
             this.userRepositoryService.updateUser(user);
             UserResponse<UserDataToObject> response = new UserResponse<UserDataToObject>()
             {

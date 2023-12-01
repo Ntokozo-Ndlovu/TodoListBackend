@@ -1,0 +1,32 @@
+.main-container {
+    background-color:#F5F8FA;
+    height:100vh; 
+    color: #14171A;
+}
+
+.main-layout {
+    width:86vw;
+    height:86vh;
+}
+
+.img-container {
+    height:200;
+    width:200;
+}
+
+.img-container img {
+    height: 100%;
+    width: 100%;
+}
+
+.button {
+    background: #1DA1F2;
+    width: 100%;
+    border-color: #1DA1F2;
+}
+
+.button:hover{
+    background: #1DA1F2;
+    width: 100%;
+    border-color: #1DA1F2;
+}

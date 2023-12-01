@@ -1,0 +1,10 @@
+.card {
+  background: #fac7c7;
+  border: #ebb6b6;
+  border-radius: 6px;
+  border-style: solid;
+  height: 100%;
+  width: 100%;
+  padding: 2px;
+  margin: 2px;
+}

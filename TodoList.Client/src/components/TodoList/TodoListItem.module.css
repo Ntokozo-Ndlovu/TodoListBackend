@@ -1,0 +1,11 @@
+.grid-todo-item {
+  display: grid;
+  grid-template-columns: 1px auto;
+}
+.todo-item{
+  color:#14171A;
+}
+
+.button {
+ 
+}

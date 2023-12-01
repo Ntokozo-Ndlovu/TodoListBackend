@@ -6,43 +6,55 @@ namespace TodoList.Data.Repository
     {
         //lets create a temp memory to store todos
         public List<TodoEntity> todoList = new List<TodoEntity>();
+        TodoDbContext dbContext;
+        public TodoRepository()
+        {
+            dbContext = new TodoDbContext();
+        }
         public TodoEntity createTodo(TodoEntity entity)
         {
-            this.todoList.Add(entity);
-            return entity;
+            var result = this.dbContext.Add(entity).Entity;
+            this.dbContext.SaveChanges();
+            return result;
         }
 
         public TodoEntity deleteTodo(Guid todoId)
         {
-            var index = this.todoList.FindIndex(todo => todo.Id == todoId);
-            if (index == -1)
-                return null;
-            var entity = this.todoList[index];
-            this.todoList.RemoveAt(index);
-            return entity;
+
+            var entity = this.dbContext.Todo.FirstOrDefault(todo => todo.Id == todoId); 
+            if(entity == null)
+            {
+                throw new Exception("Not Found");
+            }
+            var result = this.dbContext.Todo.Remove(entity);
+            this.dbContext.SaveChanges();
+            return result.Entity;
         }
 
         public List<TodoEntity> findAll(Guid createdBy)
         {
-            return this.todoList.FindAll(todo => todo.createdBy.Equals(createdBy));
+            List<TodoEntity> result = this.dbContext.Todo.Where(todo => todo.CreatedBy == createdBy).ToList();
+            
+            return result;
         }
 
         public TodoEntity findTodo(Guid todoId)
         {
-            var entity = this.todoList.Find(todo => todo.Id == todoId);
-            
+            var entity = this.dbContext.Todo.FirstOrDefault(todo => todo.Id == todoId);
+            if(entity == null)
+            {
+                throw new Exception("NotFound");
+            }
             return entity;
         }
 
         public TodoEntity updateTodo(TodoEntity entity)
         {
-            var updateTodoIndex = this.todoList.FindIndex(todoList => todoList.Id == entity.Id);
-            if(updateTodoIndex != -1)
-            {
-                this.todoList[updateTodoIndex] = entity;
 
-            }
-            return entity;
+            var todoEntity = this.dbContext.Todo.Update(entity);
+            this.dbContext.SaveChanges();
+
+            return todoEntity.Entity;
            }
     }
 }
